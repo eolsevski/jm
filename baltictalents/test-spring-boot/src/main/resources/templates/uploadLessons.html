@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>UploadLessons</title>
+</head>
+<body>
+<div style="display: flex; flex-direction: column; align-items: center">
+	<form th:action="@{/uploadLessons}" action="#" method="post">
+		<p>lesson</p>
+		<p>
+			<label for="type" >type:</label>
+			<input type="text" id="type" name="type" />
+		</p>
+		<p>
+			<label for="description" >description:</label>
+			<input type="text" id="description" name="description" />
+		</p>
+		<p>
+			<label for="course" >course:</label>
+			<input type="number" id="course" name="course" />
+		</p>
+
+
+		<p>Student</p>
+		<p>
+			<label for="sname" >Students name:</label>
+			<input type="text" id="sname" name="sname" />
+		</p>
+		<p>
+			<label for="ssurname" >Students surname:</label>
+			<input type="text" id="ssurname" name="ssurname" />
+		</p>
+		<p>Teacher</p>
+		<p>
+			<label for="tname" >Teachers name:</label>
+			<input type="text" id="tname" name="tname" />
+		</p>
+		<p>
+			<label for="tsurname" >Teachers surname:</label>
+			<input type="text" id="tsurname" name="tsurname" />
+		</p>
+		<p>
+			<label for="ttitle" >Teachers title:</label>
+			<input type="text" id="ttitle" name="ttitle" />
+		</p>
+		<p>
+			<input type="submit" value="Submit" />
+			<input type="reset" value="Reset" />
+		</p>
+
+	</form>
+</div>
+</body>
+</html>
