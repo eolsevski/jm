@@ -14,9 +14,9 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name="bases")
+@Table(name="gyventojai")
 @ToString
-public class Base {
+public class Gyventojas {
     @Getter
     @Setter
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
@@ -25,10 +25,27 @@ public class Base {
 
     @Getter
     @Setter
-    private String name;
+    private String vardas;
+    @Getter
+    @Setter
+    private String pavarde;
+    @Getter
+    @Setter
+    java.sql.Date gimimo_metai;
+    @Getter
+    @Setter
+    private String gatve;
+    @Getter
+    @Setter
+    Tautybe tautybe;
 
     @Transient
     public boolean isNew() {
         return this.id == null;
+    }
+
+
+    public enum Tautybe {
+        Lietuvis, Lenkas, Rusas
     }
 }

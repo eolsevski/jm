@@ -1,36 +1,67 @@
-import model.User;
-import repository.CommentsRepository;
-import repository.UsersRepository;
-import service.UserService;
+import model.Gyventojas;
+import repository.GyventojasRepository;
+import service.GyventojasService;
 
 import java.sql.SQLException;
+import java.util.Comparator;
+import java.util.List;
+
 
 public class Main {
+
+
     MysqlConnector mysqlConnector = new MysqlConnector();
-    UsersRepository usersRepository =
-            new UsersRepository(mysqlConnector.getConnection());
+    GyventojasRepository gyventojasRepository =
+            new GyventojasRepository(mysqlConnector.getConnection());
 
-    CommentsRepository commentsRepository =
-            new CommentsRepository(mysqlConnector.getConnection());
+    GyventojasService gyventojasService = new GyventojasService(gyventojasRepository);
 
-    UserService userService = new UserService(usersRepository, commentsRepository);
+    /**statinis metodas uzkrauti duomenis
+     *
+     * @return
+     * @throws SQLException
+     */
+    static List<Gyventojas> uzkrautiDuomenis() throws SQLException {
 
-    public Main() throws SQLException {
-    }
+    Main main = new Main();
 
+    List<Gyventojas> gyventojai = main.gyventojasRepository.findAll();
+
+    return gyventojai;
+}
+
+ static Long gyventojaiGatve(String gatve) throws SQLException {
+     List<Gyventojas> gyventojai = uzkrautiDuomenis();
+     Long counts =
+             gyventojai
+                     .stream()
+                     .filter(e->e.getGatve().equals(gatve))
+                     .count();
+     return counts;
+ }
     public static void main(String[]args) throws Exception {
-        User user = new User(1, "u12", "borat1@email");
+/**Array listas talpinantis kolekcija Gyventojas
+ *
+ */
+        List<Gyventojas> gyventojai = uzkrautiDuomenis();
+        System.out.println(gyventojai);
+
+        /** 4 uzduotis
+         *
+         */
+         gyventojai.sort(
+                Comparator.comparing(Gyventojas::getTautybe)
+                        .thenComparing(Gyventojas::getGatve)
+                        .thenComparing(Gyventojas::getVardas)
+                        );
+        System.out.println(gyventojai);
 
 
-        Main main = new Main();
-        main.
-        userService.saveOrUpdate(user);
-        main.
-        userService.getUserCommentsCount().forEach(System.out::println);
+        /** 5 uzduotis
+         *
+         */
 
 
-
+        System.out.println(gyventojaiGatve("kalnakasiu"));
     }
-
-
 }

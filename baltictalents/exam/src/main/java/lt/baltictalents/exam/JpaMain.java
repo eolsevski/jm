@@ -30,9 +30,9 @@ public class JpaMain {
     @Bean
     DataSource dataSource() {
         DataSourceBuilder dataSourceBuilder = DataSourceBuilder.create();
-        dataSourceBuilder.url("jdbc:mysql://localhost:3306/shop");
-        dataSourceBuilder.username("user");
-        dataSourceBuilder.password("user");
+        dataSourceBuilder.url("jdbc:mysql://localhost:3306/miestas");
+        dataSourceBuilder.username("root");
+        dataSourceBuilder.password("");
         return dataSourceBuilder.build();
     }
 
@@ -66,10 +66,10 @@ public class JpaMain {
 	static void loadData() {
         AnnotationConfigApplicationContext context =
                 new AnnotationConfigApplicationContext(JpaMain.class);
-        val repository = context.getBean(BaseJPARepository.class);
-        val base = new Base();
+        val repository = context.getBean(GyventojasJPARepository.class);
+        val base = new Gyventojas();
 
-        System.out.println(repository.getById(27L));
+        System.out.println(repository.getById(1L));
 
         context.close();
     }

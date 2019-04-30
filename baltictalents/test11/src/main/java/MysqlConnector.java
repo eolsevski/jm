@@ -16,7 +16,7 @@ public class MysqlConnector {
             Class.forName("com.mysql.cj.jdbc.Driver");
             // Setup the connection with the DB
             return DriverManager
-                    .getConnection("jdbc:mysql://localhost/comments","root", "");
+                    .getConnection("jdbc:mysql://localhost/miestas","root", "");
 
         } catch (Exception e) {
             System.out.println(e.getMessage());
